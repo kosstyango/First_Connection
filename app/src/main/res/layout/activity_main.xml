@@ -9,7 +9,7 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Первое подключение к сети"
+        android:text="Первое подключение"
         android:textSize="25dp"
         android:textStyle="italic"
         app:layout_constraintBottom_toBottomOf="parent"
