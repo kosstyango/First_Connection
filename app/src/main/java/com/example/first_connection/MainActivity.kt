@@ -19,9 +19,10 @@ class MainActivity : AppCompatActivity() {
         val client = OkHttpClient()
         println("Клиент OkHttp создан")
         val request = Request.Builder()
-            .url("https://reqres.in/api/users/2")
+            .url("https://api.themoviedb.org/3/movie/350?api_key=${API.Key}") //
             .build()
         println("Request.Builder создан")
+        val gson = Gson()
 
 //Создаем отправку запроса, мы должны имплементировать интерфейс Callback,
 //когда будете его импортировать, проверьте, чтобы он был от библиотеки OkHttp, потому что есть
@@ -37,9 +38,10 @@ class MainActivity : AppCompatActivity() {
             override fun onResponse(call: Call, response: Response) {
                 //Здесь тоже надо обернуть в try-catch
                 try {
-                    println(API.Key)
                     val responseBody = response.body()
-                    println("!!! ${responseBody?.string()}")
+                    val card = gson.fromJson(responseBody?.string(), FilmCard::class.java)
+                    println("!!! ${card.original_title}")
+                    println("!!! ${card.overview}")
                 } catch (e: Exception) {
                     println(response)
                     e.printStackTrace()
